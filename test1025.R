@@ -1,11 +1,7 @@
 library(tidyverse)
 library(magrittr)
 
-pest<-read.csv('Pesticides.csv',fileEncoding = "UTF-8-BOM")
 
-df1<-read.csv('Strawberries.csv',fileEncoding = "ANSI_X3.4-1986")
-df1 %>% view()
- 
 drop_no_info_cols <- function(df){
   cnames = colnames(df)
   T = NULL
@@ -69,35 +65,51 @@ pest_clean<-function(pest){
   return(pest)
 }
 
-
-
-
-
-
-straw_df<-straw_clean(df1)
-pest_df<-pest_clean(pest)
-
-straw_df %<>% separate(col=details,into = c('Pesticide','Number'),sep=' =',fill='right') 
-straw_df %>% view()
-straw_df$Pesticide %>% unique()
-straw_df %>% str_trim(Pesticide)
-
-str_trim(straw_df,Pesticide)
-
 find_TF<-function(x){
   return (grepl(x,straw_df$Pesticide))
 }
-aa
-grepl(pest_df$Pesticide[1],straw_df$Pesticide)
 
-straw_df $Pesticide %>% is.na() %>% sum()
+combine<-function(){
+  pest<-read.csv('Pesticides.csv',fileEncoding = "UTF-8-BOM")
+  df1<-read.csv('Strawberries.csv',fileEncoding = "ANSI_X3.4-1986")
+  straw_df<-straw_clean(df1)
+  pest_df<-pest_clean(pest)
+  straw_df %<>% separate(col=details,into = c('Pesticide','Number'),sep=' =',fill='right') 
+  #straw_df$Pesticide %>% is.na() %>% sum()
+  TF_re<-sapply(pest_df$Pesticide,find_TF) 
+  for (i in 1:length(pest_df$Pesticide)){
+    #print(i)
+    tmpl<-straw_df %>% `[`(TF_re[,i],) %>% `$`(Pesticide) %>% length()
+    if ( tmpl >0 ){
+      straw_df [TF_re[,i],] <- straw_df %>% `[`(TF_re[,i],) %>% mutate(Pesticide=data.frame(TF_re) %>% colnames() %>% `[`(i) ) 
+    }
+  }
+  result<-left_join(straw_df,pest_df,by='Pesticide')
+  #(apply(TF_re,1,sum)==1) %>% sum()
+  result$measurement=NA
+  for (li in result %>% select(items,units,discription)){
+    tmp1<-grepl('MEASURED',li)
+    result$measurement[tmp1]=li[tmp1]
+  }
+  result$measurement = str_trim(result$measurement)
+  result %>% relocate(measurement,.after=units)
+  return(result)
+}
 
-?sapply
-TF_re<-sapply(pest_df$Pesticide,find_TF)
-TF_re
 
-apply(.,1,sum) 
-(apply(TF_re,1,sum)==1) %>% sum()
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
