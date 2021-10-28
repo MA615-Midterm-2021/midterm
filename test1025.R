@@ -57,6 +57,7 @@ straw_clean<-function(strawb){
 pest_clean<-function(pest){
   #delete NA rows
   pest %<>% t() %>% data.frame() %>% drop_no_info_cols() %>% t() %>% data.frame()
+  #X.dropna(axis=0,how='all')
   #reset index
   #rownames(pest)<-pest$Pesticide
   pest %<>%  na_if("")
@@ -77,6 +78,7 @@ combine<-function(){
   straw_df %<>% separate(col=details,into = c('Pesticide','Number'),sep=' =',fill='right') 
   #straw_df$Pesticide %>% is.na() %>% sum()
   TF_re<-sapply(pest_df$Pesticide,find_TF) 
+  straw_df %<>% mutate(Pesticide_old=Pesticide,Pesticide=NA)
   for (i in 1:length(pest_df$Pesticide)){
     #print(i)
     tmpl<-straw_df %>% `[`(TF_re[,i],) %>% `$`(Pesticide) %>% length()
@@ -103,7 +105,8 @@ combine<-function(){
 
 
 
-
+#source('test1025.R')
+#combine() %>% view()
 
 
 
