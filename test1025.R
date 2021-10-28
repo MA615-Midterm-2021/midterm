@@ -11,7 +11,6 @@ drop_no_info_cols <- function(df){
 }
 
 straw_clean<-function(strawb){
-  
   strawb <- drop_no_info_cols(strawb)
   strawb %<>% separate(col=Data.Item,
                        into = c("Strawberries", "items", "discription", "units"),
@@ -77,7 +76,9 @@ combine<-function(){
   pest_df<-pest_clean(pest)
   straw_df %<>% separate(col=details,into = c('Pesticide','Number'),sep=' =',fill='right') 
   #straw_df$Pesticide %>% is.na() %>% sum()
-  TF_re<-sapply(pest_df$Pesticide,find_TF) 
+  TF_re<-sapply(pest_df$Pesticide,function(x){
+    return (grepl(x,straw_df$Pesticide))
+  }) 
   straw_df %<>% mutate(Pesticide_old=Pesticide,Pesticide=NA)
   for (i in 1:length(pest_df$Pesticide)){
     #print(i)
@@ -94,7 +95,7 @@ combine<-function(){
     result$measurement[tmp1]=li[tmp1]
   }
   result$measurement = str_trim(result$measurement)
-  result %>% relocate(measurement,.after=units)
+  result %<>% relocate(measurement,.after=units)
   return(result)
 }
 
