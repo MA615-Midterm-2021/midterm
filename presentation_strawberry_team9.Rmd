@@ -1,8 +1,7 @@
 ---
 title: "Presentation_team9"
 date: Dec 3, 2021
-author: Yuli Jin, Biyao Zhang, 
-author: Xihao Cao, Jinyu Li
+author: Yuli Jin, Biyao Zhang, Xihao Cao, Jinyu Li
 output: 
   revealjs::revealjs_presentation:
     theme: serif
@@ -25,7 +24,7 @@ knitr::opts_chunk$set(comment = "#>",
   fig.align = "center",
   fig.width = 10,
   fig.height = 4)
-pacman::p_load(usmap, dplyr, tidyverse, ggplot2, maps, tmap, leaflet, lubridate, readr, kableExtra, magrittr, gridExtra, knitr,revealjs,knitr,png)
+pacman::p_load(usmap, shiny, dplyr, tidyverse, ggplot2, maps, tmap, grid, leaflet, lubridate, readr, kableExtra, magrittr, gridExtra, knitr,revealjs,knitr,png)
 options(crayon.enabled = FALSE)
 
   theme_set(theme_light())
@@ -51,9 +50,36 @@ options(crayon.enabled = FALSE)
 
 ## Data table {data-background="www/straw_back.png"}
 
-- Bullet 1
-- Bullet 2
-- Bullet 3
+```{r echo=FALSE, message=FALSE}
+source("test1025.R")
+data <- combine() %>% head(30)
+data <- data %>% kable("html") %>% 
+  kable_styling("striped" ) %>% 
+  scroll_box(width = "100%", height = "500px")
+data
+  # column_spec(2:4, bold = T) %>%
+  # row_spec(3:5, bold = T, color = "white", background = "#D7261E")
+
+# data =  plyr::mutate(table1[1:10, ],
+#                    perm = cell_spec(State,"html",
+#                    color = "white",
+#                    bold = T,
+#                    background = spec_color(1:10,
+#                    end = 0.9,
+#                    option = "A",
+#                    direction = -1)),
+#   shape = ifelse(Value > 0.15,
+#                  cell_spec(State,
+#                            "html",
+#                            color = "white",
+#                            background = "#D7261E",
+#                            bold = T),
+#                  cell_spec(Value, "html",
+#                           color = "green",
+#                            bold = T)))
+#https://blog.csdn.net/qq_37379316/article/details/114417360
+
+```
 
 # EDA about strawberries {data-background="www/straw_back.png"}
 
@@ -73,7 +99,25 @@ options(crayon.enabled = FALSE)
 
 ## Strawberry in different year {data-background="www/straw_back.png"}
 
-## Organic/Non-organic rate and Pesticide type {data-background="www/straw_back.png"}
+# Organic/Non-organic rate and Pesticide type {data-background="www/straw_back.png"}
+
+## Organic Rate
+<div>
+This is the organic rate in each state in 2019<br>
+</div>
+<img data-src="figures/2019OrganicProportion.jpg" height="550" width="900" />
+
+## Organic CWT
+<img style = "float:left "data-src="figures/2016OrganicCWT.jpg" height="287" width="405" />
+
+<img data-src="figures/2019OrganicCWT.jpg" height="287" width="405" />
+
+## Organic Price
+<figure>
+<img style = "float:left" data-src="figures/2016OrganicPrice.jpg" height="287px" width="405px" />
+<img data-src="figures/2019OrganicPrice.jpg" height="287px" width="405px" />
+
+</figure>
 
 # Conclusion {data-background="www/straw_back.png"}
 
@@ -81,7 +125,7 @@ options(crayon.enabled = FALSE)
 ## Slide with R Code and Output {data-background="www/straw_back.png"}
 
 ```{r}
-
+# <pre><figcaption> Fig1 &#9;&#9;&#9 Fig2 </figcaption></pre>
 ```
 
 ## Slide with Plot {data-background="www/straw_back.png"}
@@ -92,5 +136,5 @@ options(crayon.enabled = FALSE)
 
 # Shiny {data-background="www/straw_back.png"}
 
-[Strawberry](https://a.shinyapps.io/xx/)
+[Strawberry](https://yulijin.shinyapps.io/midterm/)
 
