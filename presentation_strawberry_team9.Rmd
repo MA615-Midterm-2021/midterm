@@ -1,52 +1,96 @@
 ---
-title: "presentation_team9"
-date: Dec 1, 2021
-author: Yuli Jin, Biyao Zhang, Xihao Cao, Jinyu Li
+title: "Presentation_team9"
+date: Dec 3, 2021
+author: Yuli Jin, Biyao Zhang, 
+author: Xihao Cao, Jinyu Li
 output: 
   revealjs::revealjs_presentation:
-    template: reveal_template.html
-    theme: white
-    highlight: pygments 
-    css: reveal.css
+    theme: serif
+    transition: slide
+    self_contained: false
+    reveal_plugins: ["menu"]
+    center: false
 ---
-<section data-background-image="images/title-io1.svg";
-         data-background-size:"contain"
-         background-repeat: no-repeat;>
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(comment = "#>",
+  collapse = TRUE,
+  cache = TRUE,
+  warning = FALSE,
+  message = FALSE,
+  dpi = 300,
+  cache.lazy = FALSE,
+  tidy = "styler",
+  out.width = "90%",
+  fig.align = "center",
+  fig.width = 10,
+  fig.height = 4)
+pacman::p_load(usmap, dplyr, tidyverse, ggplot2, maps, tmap, leaflet, lubridate, readr, kableExtra, magrittr, gridExtra, knitr,revealjs,knitr,png)
+options(crayon.enabled = FALSE)
+
+  theme_set(theme_light())
+```
 
 
-</section>
-# Strawberry EDA Team 9 {data-background="images/none.svg"}
-Team 9 Presentation
+# Introduction {data-background="www/straw_back.png"}
+
 <br>
 <div style="font-size:16pt;margin-left:40px">
 <b>The way to input some figures</b>
-<img data-src="Tnum_10.png" height="550" width="900" />
+<img data-src=".png" height="550" width="900" />
 </div>
 
 
 
 
-## R Markdown
+# Data Description {data-background="www/straw_back.png"}
 
-This is an R Markdown presentation. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
 
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document.
+<http://rmarkdown.rstudio.com>.
 
-## Slide with Bullets
+
+## Data table {data-background="www/straw_back.png"}
 
 - Bullet 1
 - Bullet 2
 - Bullet 3
 
-## Slide with R Code and Output
+# EDA about strawberries {data-background="www/straw_back.png"}
+
+## Strawberry distribution {data-background="www/straw_back.png"}
+
+```{r echo=FALSE, include=FALSE, message=FALSE}
+ # template: reveal_template.html
+    # theme: white
+    # highlight: pygments 
+    # css: reveal.css
+# 
+# <section data-background-image="images/title-io1.svg";
+#          data-background-size:"contain"
+#          background-repeat: no-repeat;>
+# </section>
+```
+
+## Strawberry in different year {data-background="www/straw_back.png"}
+
+## Organic/Non-organic rate and Pesticide type {data-background="www/straw_back.png"}
+
+# Conclusion {data-background="www/straw_back.png"}
+
+
+## Slide with R Code and Output {data-background="www/straw_back.png"}
 
 ```{r}
-summary(cars)
+
 ```
 
-## Slide with Plot
+## Slide with Plot {data-background="www/straw_back.png"}
 
 ```{r, echo=FALSE}
-plot(cars)
+
 ```
+
+# Shiny {data-background="www/straw_back.png"}
+
+[Strawberry](https://a.shinyapps.io/xx/)
 
