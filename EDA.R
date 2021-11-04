@@ -34,7 +34,7 @@ CALIFORNIA_18<-summarise(group_by(filter(chemical_18,State=="CALIFORNIA"),type),
 #绘图 2019CALIFORNIA
 #CALIFORNIA <- data.frame(CALIFORNIA)
 o_status = c("FUNGICIDE","HERBICIDE","INSECTICIDE","OTHER")
-plot_ly(CALIFORNIA_19,x =~type,y = ~count,color = o_status,alpha = 0.5) %>%
+plot_ly(CALIFORNIA_19,x=~type,y = ~count,color = o_status,alpha = 0.5) %>%
   #add_text(text = 'test') %>%
   #add_markers() %>%
   add_bars() %>%
@@ -44,11 +44,13 @@ plot_ly(CALIFORNIA_19,x =~type,y = ~count,color = o_status,alpha = 0.5) %>%
       borderwidth = 1,
       orientation = 'h'
     ),
+    xaxis = list(title = ""), #去掉X轴名称type 
     margin = list(
       l = 70,
       r = 80
     )
   )
+
 #绘图 2019FLORIDA
 o_status = c("FUNGICIDE","HERBICIDE","INSECTICIDE","OTHER")
 plot_ly(FLORIDA_19,x =~type,y = ~count,color = o_status,alpha = 0.5) %>%
@@ -83,33 +85,6 @@ plot_ly(CALIFORNIA_18,x =~type,y = ~count,color = o_status,alpha = 0.5) %>%
       r = 80
     )
   )
-#绘制地图
-qplot(long,lat,data=us.cities,color=('blue'))+borders("state",size=0.5)
-states <-  map_data ( "state" )
-#arrests <- USArrests
-names (chemical_type) <-  tolower ( names (chemical_type))
-chemical_type$State <-  tolower ( rownames (chemical_type))
-choro <-  merge (states,chemical_type,by= "State" )
-#由于绘制多边形时涉及顺序问题，且merge破坏了原始排序，故将行重新排序
-choro <- choro[ order (choro$order),]
-qplot (long,lat,data=choro,group=group,fill=assault,geom= "polygon" )
-
-
-df$hover <- with(df, paste(state, '<br>', "确诊人数:", definte,"<br>","死亡人数:", death, "<br>","死亡率:",rate,"%")) #鼠标放上显示相关数据
-fig <- plot_geo(df, locationmode = 'USA-states') #将表格数据与美国地图关联
-#交互
-fig <- fig %>% add_trace(
-  locations = ~code,
-  type='choropleth',
-  z= ~definte,
-  text = ~hover,
-  colorscale="Reds"
-)
-#添加标题
-fig <- fig %>% layout(title = "Strawberry")
-#显示
-fig
-
 
 
 
