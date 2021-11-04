@@ -1,5 +1,5 @@
 ---
-title: "Presentation_team9"
+title: "Presentation_team 9"
 date: Dec 3, 2021
 author: Yuli Jin, Biyao Zhang, Xihao Cao, Jinyu Li
 output: 
@@ -84,22 +84,19 @@ data1
 
 # EDA {data-background="www/straw_back.png"}
 <div style = "text-align: left">
-- Total Project Amount for Each State
+- Organic
 
-- Total Project Amount for Each Year
+- Chemicals
 
-- Total Project Amount for Different Project Size
-
-- Total Project Amount for Different Damage Categories
+- Toxins
 </div>
+
 ## Strawberry distribution {data-background="www/straw_back.png"}
 
 <img data-src="figures/str_distribution.png" height="600" width="684"/>
 
 
-# Organic/Chemical {data-background="www/straw_back.png"}
-
-## Organic Rate {data-background="www/straw_back.png"}
+# Organic Rate {data-background="www/straw_back.png"}
 <div style = "text-align: left">
 This is the organic rate in each state in 2019
 </div>

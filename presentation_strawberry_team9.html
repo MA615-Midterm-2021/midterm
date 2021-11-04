@@ -1,0 +1,2914 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="author" content="Yuli Jin, Biyao Zhang, Xihao Cao, Jinyu Li" />
+  <title>Presentation_team 9</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="presentation_strawberry_team9_files/reveal.js-3.3.0.1/css/reveal.css"/>
+
+
+
+<link rel="stylesheet" href="presentation_strawberry_team9_files/reveal.js-3.3.0.1/css/theme/serif.css" id="theme">
+
+
+  <!-- some tweaks to reveal css -->
+  <style type="text/css">
+    .reveal h1 { font-size: 2.0em; }
+    .reveal h2 { font-size: 1.5em;  }
+    .reveal h3 { font-size: 1.25em;	}
+    .reveal h4 { font-size: 1em;	}
+
+    .reveal .slides>section,
+    .reveal .slides>section>section {
+      padding: 0px 0px;
+    }
+
+
+
+    .reveal table {
+      border-width: 1px;
+      border-spacing: 2px;
+      border-style: dotted;
+      border-color: gray;
+      border-collapse: collapse;
+      font-size: 0.7em;
+    }
+
+    .reveal table th {
+      border-width: 1px;
+      padding-left: 10px;
+      padding-right: 25px;
+      font-weight: bold;
+      border-style: dotted;
+      border-color: gray;
+    }
+
+    .reveal table td {
+      border-width: 1px;
+      padding-left: 10px;
+      padding-right: 25px;
+      border-style: dotted;
+      border-color: gray;
+    }
+
+
+  </style>
+
+    <style type="text/css">code{white-space: pre;}</style>
+
+
+<!-- Printing and PDF exports -->
+<script id="paper-css" type="application/dynamic-css">
+
+/* Default Print Stylesheet Template
+   by Rob Glazebrook of CSSnewbie.com
+   Last Updated: June 4, 2008
+
+   Feel free (nay, compelled) to edit, append, and
+   manipulate this file as you see fit. */
+
+
+@media print {
+
+	/* SECTION 1: Set default width, margin, float, and
+	   background. This prevents elements from extending
+	   beyond the edge of the printed page, and prevents
+	   unnecessary background images from printing */
+	html {
+		background: #fff;
+		width: auto;
+		height: auto;
+		overflow: visible;
+	}
+	body {
+		background: #fff;
+		font-size: 20pt;
+		width: auto;
+		height: auto;
+		border: 0;
+		margin: 0 5%;
+		padding: 0;
+		overflow: visible;
+		float: none !important;
+	}
+
+	/* SECTION 2: Remove any elements not needed in print.
+	   This would include navigation, ads, sidebars, etc. */
+	.nestedarrow,
+	.controls,
+	.fork-reveal,
+	.share-reveal,
+	.state-background,
+	.reveal .progress,
+	.reveal .backgrounds {
+		display: none !important;
+	}
+
+	/* SECTION 3: Set body font face, size, and color.
+	   Consider using a serif font for readability. */
+	body, p, td, li, div {
+		font-size: 20pt!important;
+		font-family: Georgia, "Times New Roman", Times, serif !important;
+		color: #000;
+	}
+
+	/* SECTION 4: Set heading font face, sizes, and color.
+	   Differentiate your headings from your body text.
+	   Perhaps use a large sans-serif for distinction. */
+	h1,h2,h3,h4,h5,h6 {
+		color: #000!important;
+		height: auto;
+		line-height: normal;
+		font-family: Georgia, "Times New Roman", Times, serif !important;
+		text-shadow: 0 0 0 #000 !important;
+		text-align: left;
+		letter-spacing: normal;
+	}
+	/* Need to reduce the size of the fonts for printing */
+	h1 { font-size: 28pt !important;  }
+	h2 { font-size: 24pt !important; }
+	h3 { font-size: 22pt !important; }
+	h4 { font-size: 22pt !important; font-variant: small-caps; }
+	h5 { font-size: 21pt !important; }
+	h6 { font-size: 20pt !important; font-style: italic; }
+
+	/* SECTION 5: Make hyperlinks more usable.
+	   Ensure links are underlined, and consider appending
+	   the URL to the end of the link for usability. */
+	a:link,
+	a:visited {
+		color: #000 !important;
+		font-weight: bold;
+		text-decoration: underline;
+	}
+	/*
+	.reveal a:link:after,
+	.reveal a:visited:after {
+		content: " (" attr(href) ") ";
+		color: #222 !important;
+		font-size: 90%;
+	}
+	*/
+
+
+	/* SECTION 6: more reveal.js specific additions by @skypanther */
+	ul, ol, div, p {
+		visibility: visible;
+		position: static;
+		width: auto;
+		height: auto;
+		display: block;
+		overflow: visible;
+		margin: 0;
+		text-align: left !important;
+	}
+	.reveal pre,
+	.reveal table {
+		margin-left: 0;
+		margin-right: 0;
+	}
+	.reveal pre code {
+		padding: 20px;
+		border: 1px solid #ddd;
+	}
+	.reveal blockquote {
+		margin: 20px 0;
+	}
+	.reveal .slides {
+		position: static !important;
+		width: auto !important;
+		height: auto !important;
+
+		left: 0 !important;
+		top: 0 !important;
+		margin-left: 0 !important;
+		margin-top: 0 !important;
+		padding: 0 !important;
+		zoom: 1 !important;
+
+		overflow: visible !important;
+		display: block !important;
+
+		text-align: left !important;
+		-webkit-perspective: none;
+		   -moz-perspective: none;
+		    -ms-perspective: none;
+		        perspective: none;
+
+		-webkit-perspective-origin: 50% 50%;
+		   -moz-perspective-origin: 50% 50%;
+		    -ms-perspective-origin: 50% 50%;
+		        perspective-origin: 50% 50%;
+	}
+	.reveal .slides section {
+		visibility: visible !important;
+		position: static !important;
+		width: auto !important;
+		height: auto !important;
+		display: block !important;
+		overflow: visible !important;
+
+		left: 0 !important;
+		top: 0 !important;
+		margin-left: 0 !important;
+		margin-top: 0 !important;
+		padding: 60px 20px !important;
+		z-index: auto !important;
+
+		opacity: 1 !important;
+
+		page-break-after: always !important;
+
+		-webkit-transform-style: flat !important;
+		   -moz-transform-style: flat !important;
+		    -ms-transform-style: flat !important;
+		        transform-style: flat !important;
+
+		-webkit-transform: none !important;
+		   -moz-transform: none !important;
+		    -ms-transform: none !important;
+		        transform: none !important;
+
+		-webkit-transition: none !important;
+		   -moz-transition: none !important;
+		    -ms-transition: none !important;
+		        transition: none !important;
+	}
+	.reveal .slides section.stack {
+		padding: 0 !important;
+	}
+	.reveal section:last-of-type {
+		page-break-after: avoid !important;
+	}
+	.reveal section .fragment {
+		opacity: 1 !important;
+		visibility: visible !important;
+
+		-webkit-transform: none !important;
+		   -moz-transform: none !important;
+		    -ms-transform: none !important;
+		        transform: none !important;
+	}
+	.reveal section img {
+		display: block;
+		margin: 15px 0px;
+		background: rgba(255,255,255,1);
+		border: 1px solid #666;
+		box-shadow: none;
+	}
+
+	.reveal section small {
+		font-size: 0.8em;
+	}
+
+}  
+</script>
+
+
+<script id="pdf-css" type="application/dynamic-css">
+    
+/**
+ * This stylesheet is used to print reveal.js
+ * presentations to PDF.
+ *
+ * https://github.com/hakimel/reveal.js#pdf-export
+ */
+
+* {
+	-webkit-print-color-adjust: exact;
+}
+
+body {
+	margin: 0 auto !important;
+	border: 0;
+	padding: 0;
+	float: none !important;
+	overflow: visible;
+}
+
+html {
+	width: 100%;
+	height: 100%;
+	overflow: visible;
+}
+
+/* Remove any elements not needed in print. */
+.nestedarrow,
+.reveal .controls,
+.reveal .progress,
+.reveal .playback,
+.reveal.overview,
+.fork-reveal,
+.share-reveal,
+.state-background {
+	display: none !important;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	text-shadow: 0 0 0 #000 !important;
+}
+
+.reveal pre code {
+	overflow: hidden !important;
+	font-family: Courier, 'Courier New', monospace !important;
+}
+
+ul, ol, div, p {
+	visibility: visible;
+	position: static;
+	width: auto;
+	height: auto;
+	display: block;
+	overflow: visible;
+	margin: auto;
+}
+.reveal {
+	width: auto !important;
+	height: auto !important;
+	overflow: hidden !important;
+}
+.reveal .slides {
+	position: static;
+	width: 100%;
+	height: auto;
+
+	left: auto;
+	top: auto;
+	margin: 0 !important;
+	padding: 0 !important;
+
+	overflow: visible;
+	display: block;
+
+	-webkit-perspective: none;
+	   -moz-perspective: none;
+	    -ms-perspective: none;
+	        perspective: none;
+
+	-webkit-perspective-origin: 50% 50%; /* there isn't a none/auto value but 50-50 is the default */
+	   -moz-perspective-origin: 50% 50%;
+	    -ms-perspective-origin: 50% 50%;
+	        perspective-origin: 50% 50%;
+}
+
+.reveal .slides section {
+	page-break-after: always !important;
+
+	visibility: visible !important;
+	position: relative !important;
+	display: block !important;
+	position: relative !important;
+
+	margin: 0 !important;
+	padding: 0 !important;
+	box-sizing: border-box !important;
+	min-height: 1px;
+
+	opacity: 1 !important;
+
+	-webkit-transform-style: flat !important;
+	   -moz-transform-style: flat !important;
+	    -ms-transform-style: flat !important;
+	        transform-style: flat !important;
+
+	-webkit-transform: none !important;
+	   -moz-transform: none !important;
+	    -ms-transform: none !important;
+	        transform: none !important;
+}
+
+.reveal section.stack {
+	margin: 0 !important;
+	padding: 0 !important;
+	page-break-after: avoid !important;
+	height: auto !important;
+	min-height: auto !important;
+}
+
+.reveal img {
+	box-shadow: none;
+}
+
+.reveal .roll {
+	overflow: visible;
+	line-height: 1em;
+}
+
+/* Slide backgrounds are placed inside of their slide when exporting to PDF */
+.reveal section .slide-background {
+	display: block !important;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	z-index: -1;
+}
+
+/* All elements should be above the slide-background */
+.reveal section>* {
+	position: relative;
+	z-index: 1;
+}
+
+/* Display slide speaker notes when 'showNotes' is enabled */
+.reveal .speaker-notes-pdf {
+	display: block;
+	width: 100%;
+	max-height: none;
+	left: auto;
+	top: auto;
+	z-index: 100;
+}
+
+/* Display slide numbers when 'slideNumber' is enabled */
+.reveal .slide-number-pdf {
+	display: block;
+	position: absolute;
+	font-size: 14px;
+}
+
+</script>
+
+
+<script>
+var style = document.createElement( 'style' );
+style.type = 'text/css';
+var style_script_id = window.location.search.match( /print-pdf/gi ) ? 'pdf-css' : 'paper-css';
+var style_script = document.getElementById(style_script_id).text;
+style.innerHTML = style_script;
+document.getElementsByTagName('head')[0].appendChild(style);
+</script>
+
+    <script src="presentation_strawberry_team9_files/header-attrs-2.10/header-attrs.js"></script>
+    <link href="presentation_strawberry_team9_files/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+    <link href="presentation_strawberry_team9_files/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+    <script src="presentation_strawberry_team9_files/kePrint-0.0.1/kePrint.js"></script>
+    <link href="presentation_strawberry_team9_files/lightable-0.0.1/lightable.css" rel="stylesheet" />
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+<section>
+    <h1 class="title">Presentation_team 9</h1>
+    <h2 class="author">Yuli Jin, Biyao Zhang, Xihao Cao, Jinyu Li</h2>
+    <h3 class="date">Dec 3, 2021</h3>
+</section>
+
+<section id="introduction" class="title-slide slide level1" data-background="www/straw_back.png">
+<h1 data-background="www/straw_back.png">Introduction</h1>
+<div style="text-align: left">
+<p>In this assignment, we basically focused on the “Domain” column of the strawberry dataset and generate some related EDA.<br></p>
+<p>In our presentation, we will show you how we wrangled our data, what kind of EDA we have done, and what is something we can tell from our work.<br></p>
+<p>The purpose of this assignment is to show our ability of using R to produce documents, presentations, and shiny apps.<br></p>
+</div>
+</section>
+
+<section>
+<section id="data-description" class="title-slide slide level1" data-background="www/straw_back.png">
+<h1 data-background="www/straw_back.png">Data Description</h1>
+<div style="text-align: left">
+<p>There are 2 datasets collected by USDA and presented by Haviland– Strawberries.csv and Pesticides.csv. We need to do some wrangling to join the 2 datasets, make them tidy and clean them.</p>
+<p>Strawberries.csv — 3021 rows x 21 columns<br> Pesticides.csv — 90 rows x 5 columns</p>
+</div>
+</section>
+<section id="data-table" class="slide level2" data-background="www/straw_back.png">
+<h2 data-background="www/straw_back.png">Data table</h2>
+<div style="border: 1px solid #ddd; padding: 0px; overflow-y: scroll; height:400px; overflow-x: scroll; width:100%; ">
+<table class="table table-striped" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+Program
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+Year
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+Period
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+State
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+State.ANSI
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+Strawberries
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+items
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+discription
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+units
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+measurement
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+dname
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+type
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+Domain.Category
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+title
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+Pesticide
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+Number
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+Value
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+CV….
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+Pesticide_old
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+Carcinogen
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+Hormone.Disruptor
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+Neurotoxins
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+Developmental.or.Reproductive.Toxins
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+Bee.Toxins
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+CENSUS
+</td>
+<td style="text-align:right;">
+2019
+</td>
+<td style="text-align:left;">
+YEAR
+</td>
+<td style="text-align:left;">
+CALIFORNIA
+</td>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:left;">
+STRAWBERRIES
+</td>
+<td style="text-align:left;">
+ORGANIC - OPERATIONS WITH SALES
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+ORGANIC STATUS
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+ORGANIC STATUS: (NOP USDA CERTIFIED)
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+174
+</td>
+<td style="text-align:left;">
+8
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+CENSUS
+</td>
+<td style="text-align:right;">
+2019
+</td>
+<td style="text-align:left;">
+YEAR
+</td>
+<td style="text-align:left;">
+CALIFORNIA
+</td>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:left;">
+STRAWBERRIES
+</td>
+<td style="text-align:left;">
+ORGANIC - SALES
+</td>
+<td style="text-align:left;">
+MEASURED IN $
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+MEASURED IN $
+</td>
+<td style="text-align:left;">
+ORGANIC STATUS
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+ORGANIC STATUS: (NOP USDA CERTIFIED)
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+300,277,717
+</td>
+<td style="text-align:left;">
+33.1
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+CENSUS
+</td>
+<td style="text-align:right;">
+2019
+</td>
+<td style="text-align:left;">
+YEAR
+</td>
+<td style="text-align:left;">
+CALIFORNIA
+</td>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:left;">
+STRAWBERRIES
+</td>
+<td style="text-align:left;">
+ORGANIC - SALES
+</td>
+<td style="text-align:left;">
+MEASURED IN CWT
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+MEASURED IN CWT
+</td>
+<td style="text-align:left;">
+ORGANIC STATUS
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+ORGANIC STATUS: (NOP USDA CERTIFIED)
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+1,384,016
+</td>
+<td style="text-align:left;">
+30.4
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+CENSUS
+</td>
+<td style="text-align:right;">
+2019
+</td>
+<td style="text-align:left;">
+YEAR
+</td>
+<td style="text-align:left;">
+CALIFORNIA
+</td>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:left;">
+STRAWBERRIES
+</td>
+<td style="text-align:left;">
+ORGANIC
+</td>
+<td style="text-align:left;">
+FRESH MARKET - OPERATIONS WITH SALES
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+ORGANIC STATUS
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+ORGANIC STATUS: (NOP USDA CERTIFIED)
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+170
+</td>
+<td style="text-align:left;">
+8
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+CENSUS
+</td>
+<td style="text-align:right;">
+2019
+</td>
+<td style="text-align:left;">
+YEAR
+</td>
+<td style="text-align:left;">
+CALIFORNIA
+</td>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:left;">
+STRAWBERRIES
+</td>
+<td style="text-align:left;">
+ORGANIC
+</td>
+<td style="text-align:left;">
+FRESH MARKET - SALES
+</td>
+<td style="text-align:left;">
+MEASURED IN $
+</td>
+<td style="text-align:left;">
+MEASURED IN $
+</td>
+<td style="text-align:left;">
+ORGANIC STATUS
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+ORGANIC STATUS: (NOP USDA CERTIFIED)
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+275,716,713
+</td>
+<td style="text-align:left;">
+35.5
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+CENSUS
+</td>
+<td style="text-align:right;">
+2019
+</td>
+<td style="text-align:left;">
+YEAR
+</td>
+<td style="text-align:left;">
+CALIFORNIA
+</td>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:left;">
+STRAWBERRIES
+</td>
+<td style="text-align:left;">
+ORGANIC
+</td>
+<td style="text-align:left;">
+FRESH MARKET - SALES
+</td>
+<td style="text-align:left;">
+MEASURED IN CWT
+</td>
+<td style="text-align:left;">
+MEASURED IN CWT
+</td>
+<td style="text-align:left;">
+ORGANIC STATUS
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+ORGANIC STATUS: (NOP USDA CERTIFIED)
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+1,177,214
+</td>
+<td style="text-align:left;">
+33.7
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+CENSUS
+</td>
+<td style="text-align:right;">
+2019
+</td>
+<td style="text-align:left;">
+YEAR
+</td>
+<td style="text-align:left;">
+CALIFORNIA
+</td>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:left;">
+STRAWBERRIES
+</td>
+<td style="text-align:left;">
+ORGANIC
+</td>
+<td style="text-align:left;">
+PROCESSING - OPERATIONS WITH SALES
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+ORGANIC STATUS
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+ORGANIC STATUS: (NOP USDA CERTIFIED)
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+15
+</td>
+<td style="text-align:left;">
+39.7
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+CENSUS
+</td>
+<td style="text-align:right;">
+2019
+</td>
+<td style="text-align:left;">
+YEAR
+</td>
+<td style="text-align:left;">
+CALIFORNIA
+</td>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:left;">
+STRAWBERRIES
+</td>
+<td style="text-align:left;">
+ORGANIC
+</td>
+<td style="text-align:left;">
+PROCESSING - SALES
+</td>
+<td style="text-align:left;">
+MEASURED IN $
+</td>
+<td style="text-align:left;">
+MEASURED IN $
+</td>
+<td style="text-align:left;">
+ORGANIC STATUS
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+ORGANIC STATUS: (NOP USDA CERTIFIED)
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+24,561,004
+</td>
+<td style="text-align:left;">
+68.3
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+CENSUS
+</td>
+<td style="text-align:right;">
+2019
+</td>
+<td style="text-align:left;">
+YEAR
+</td>
+<td style="text-align:left;">
+CALIFORNIA
+</td>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:left;">
+STRAWBERRIES
+</td>
+<td style="text-align:left;">
+ORGANIC
+</td>
+<td style="text-align:left;">
+PROCESSING - SALES
+</td>
+<td style="text-align:left;">
+MEASURED IN CWT
+</td>
+<td style="text-align:left;">
+MEASURED IN CWT
+</td>
+<td style="text-align:left;">
+ORGANIC STATUS
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+ORGANIC STATUS: (NOP USDA CERTIFIED)
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+206,802
+</td>
+<td style="text-align:left;">
+49.3
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+CENSUS
+</td>
+<td style="text-align:right;">
+2019
+</td>
+<td style="text-align:left;">
+YEAR
+</td>
+<td style="text-align:left;">
+FLORIDA
+</td>
+<td style="text-align:right;">
+12
+</td>
+<td style="text-align:left;">
+STRAWBERRIES
+</td>
+<td style="text-align:left;">
+ORGANIC - OPERATIONS WITH SALES
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+ORGANIC STATUS
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+ORGANIC STATUS: (NOP USDA CERTIFIED)
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+14
+</td>
+<td style="text-align:left;">
+30.4
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+CENSUS
+</td>
+<td style="text-align:right;">
+2019
+</td>
+<td style="text-align:left;">
+YEAR
+</td>
+<td style="text-align:left;">
+FLORIDA
+</td>
+<td style="text-align:right;">
+12
+</td>
+<td style="text-align:left;">
+STRAWBERRIES
+</td>
+<td style="text-align:left;">
+ORGANIC - SALES
+</td>
+<td style="text-align:left;">
+MEASURED IN $
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+MEASURED IN $
+</td>
+<td style="text-align:left;">
+ORGANIC STATUS
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+ORGANIC STATUS: (NOP USDA CERTIFIED)
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+15,055,709
+</td>
+<td style="text-align:left;">
+83.4
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+CENSUS
+</td>
+<td style="text-align:right;">
+2019
+</td>
+<td style="text-align:left;">
+YEAR
+</td>
+<td style="text-align:left;">
+FLORIDA
+</td>
+<td style="text-align:right;">
+12
+</td>
+<td style="text-align:left;">
+STRAWBERRIES
+</td>
+<td style="text-align:left;">
+ORGANIC - SALES
+</td>
+<td style="text-align:left;">
+MEASURED IN CWT
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+MEASURED IN CWT
+</td>
+<td style="text-align:left;">
+ORGANIC STATUS
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+ORGANIC STATUS: (NOP USDA CERTIFIED)
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+59,905
+</td>
+<td style="text-align:left;">
+76.3
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+CENSUS
+</td>
+<td style="text-align:right;">
+2019
+</td>
+<td style="text-align:left;">
+YEAR
+</td>
+<td style="text-align:left;">
+FLORIDA
+</td>
+<td style="text-align:right;">
+12
+</td>
+<td style="text-align:left;">
+STRAWBERRIES
+</td>
+<td style="text-align:left;">
+ORGANIC
+</td>
+<td style="text-align:left;">
+FRESH MARKET - OPERATIONS WITH SALES
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+ORGANIC STATUS
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+ORGANIC STATUS: (NOP USDA CERTIFIED)
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+14
+</td>
+<td style="text-align:left;">
+30.4
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+CENSUS
+</td>
+<td style="text-align:right;">
+2019
+</td>
+<td style="text-align:left;">
+YEAR
+</td>
+<td style="text-align:left;">
+FLORIDA
+</td>
+<td style="text-align:right;">
+12
+</td>
+<td style="text-align:left;">
+STRAWBERRIES
+</td>
+<td style="text-align:left;">
+ORGANIC
+</td>
+<td style="text-align:left;">
+FRESH MARKET - SALES
+</td>
+<td style="text-align:left;">
+MEASURED IN $
+</td>
+<td style="text-align:left;">
+MEASURED IN $
+</td>
+<td style="text-align:left;">
+ORGANIC STATUS
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+ORGANIC STATUS: (NOP USDA CERTIFIED)
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+15,055,709
+</td>
+<td style="text-align:left;">
+83.4
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+CENSUS
+</td>
+<td style="text-align:right;">
+2019
+</td>
+<td style="text-align:left;">
+YEAR
+</td>
+<td style="text-align:left;">
+FLORIDA
+</td>
+<td style="text-align:right;">
+12
+</td>
+<td style="text-align:left;">
+STRAWBERRIES
+</td>
+<td style="text-align:left;">
+ORGANIC
+</td>
+<td style="text-align:left;">
+FRESH MARKET - SALES
+</td>
+<td style="text-align:left;">
+MEASURED IN CWT
+</td>
+<td style="text-align:left;">
+MEASURED IN CWT
+</td>
+<td style="text-align:left;">
+ORGANIC STATUS
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+ORGANIC STATUS: (NOP USDA CERTIFIED)
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+59,905
+</td>
+<td style="text-align:left;">
+76.3
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+CENSUS
+</td>
+<td style="text-align:right;">
+2019
+</td>
+<td style="text-align:left;">
+YEAR
+</td>
+<td style="text-align:left;">
+NEW YORK
+</td>
+<td style="text-align:right;">
+36
+</td>
+<td style="text-align:left;">
+STRAWBERRIES
+</td>
+<td style="text-align:left;">
+ORGANIC - OPERATIONS WITH SALES
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+ORGANIC STATUS
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+ORGANIC STATUS: (NOP USDA CERTIFIED)
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+36
+</td>
+<td style="text-align:left;">
+27.3
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+CENSUS
+</td>
+<td style="text-align:right;">
+2019
+</td>
+<td style="text-align:left;">
+YEAR
+</td>
+<td style="text-align:left;">
+NEW YORK
+</td>
+<td style="text-align:right;">
+36
+</td>
+<td style="text-align:left;">
+STRAWBERRIES
+</td>
+<td style="text-align:left;">
+ORGANIC - SALES
+</td>
+<td style="text-align:left;">
+MEASURED IN $
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+MEASURED IN $
+</td>
+<td style="text-align:left;">
+ORGANIC STATUS
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+ORGANIC STATUS: (NOP USDA CERTIFIED)
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+644,155
+</td>
+<td style="text-align:left;">
+42.2
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+CENSUS
+</td>
+<td style="text-align:right;">
+2019
+</td>
+<td style="text-align:left;">
+YEAR
+</td>
+<td style="text-align:left;">
+NEW YORK
+</td>
+<td style="text-align:right;">
+36
+</td>
+<td style="text-align:left;">
+STRAWBERRIES
+</td>
+<td style="text-align:left;">
+ORGANIC - SALES
+</td>
+<td style="text-align:left;">
+MEASURED IN CWT
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+MEASURED IN CWT
+</td>
+<td style="text-align:left;">
+ORGANIC STATUS
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+ORGANIC STATUS: (NOP USDA CERTIFIED)
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+2,260
+</td>
+<td style="text-align:left;">
+32.6
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+CENSUS
+</td>
+<td style="text-align:right;">
+2019
+</td>
+<td style="text-align:left;">
+YEAR
+</td>
+<td style="text-align:left;">
+NEW YORK
+</td>
+<td style="text-align:right;">
+36
+</td>
+<td style="text-align:left;">
+STRAWBERRIES
+</td>
+<td style="text-align:left;">
+ORGANIC
+</td>
+<td style="text-align:left;">
+FRESH MARKET - OPERATIONS WITH SALES
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+ORGANIC STATUS
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+ORGANIC STATUS: (NOP USDA CERTIFIED)
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+34
+</td>
+<td style="text-align:left;">
+28.7
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+CENSUS
+</td>
+<td style="text-align:right;">
+2019
+</td>
+<td style="text-align:left;">
+YEAR
+</td>
+<td style="text-align:left;">
+NEW YORK
+</td>
+<td style="text-align:right;">
+36
+</td>
+<td style="text-align:left;">
+STRAWBERRIES
+</td>
+<td style="text-align:left;">
+ORGANIC
+</td>
+<td style="text-align:left;">
+FRESH MARKET - SALES
+</td>
+<td style="text-align:left;">
+MEASURED IN $
+</td>
+<td style="text-align:left;">
+MEASURED IN $
+</td>
+<td style="text-align:left;">
+ORGANIC STATUS
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+ORGANIC STATUS: (NOP USDA CERTIFIED)
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+<ol start="4" type="A">
+<li></td>
+<td style="text-align:left;">
+<ol start="4" type="A">
+<li></td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+CENSUS
+</td>
+<td style="text-align:right;">
+2019
+</td>
+<td style="text-align:left;">
+YEAR
+</td>
+<td style="text-align:left;">
+NEW YORK
+</td>
+<td style="text-align:right;">
+36
+</td>
+<td style="text-align:left;">
+STRAWBERRIES
+</td>
+<td style="text-align:left;">
+ORGANIC
+</td>
+<td style="text-align:left;">
+FRESH MARKET - SALES
+</td>
+<td style="text-align:left;">
+MEASURED IN CWT
+</td>
+<td style="text-align:left;">
+MEASURED IN CWT
+</td>
+<td style="text-align:left;">
+ORGANIC STATUS
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+ORGANIC STATUS: (NOP USDA CERTIFIED)
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+<ol start="4" type="A">
+<li></td>
+<td style="text-align:left;">
+<ol start="4" type="A">
+<li></td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+CENSUS
+</td>
+<td style="text-align:right;">
+2019
+</td>
+<td style="text-align:left;">
+YEAR
+</td>
+<td style="text-align:left;">
+NEW YORK
+</td>
+<td style="text-align:right;">
+36
+</td>
+<td style="text-align:left;">
+STRAWBERRIES
+</td>
+<td style="text-align:left;">
+ORGANIC
+</td>
+<td style="text-align:left;">
+PROCESSING - OPERATIONS WITH SALES
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+ORGANIC STATUS
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+ORGANIC STATUS: (NOP USDA CERTIFIED)
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+2
+</td>
+<td style="text-align:left;">
+95
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+CENSUS
+</td>
+<td style="text-align:right;">
+2019
+</td>
+<td style="text-align:left;">
+YEAR
+</td>
+<td style="text-align:left;">
+NEW YORK
+</td>
+<td style="text-align:right;">
+36
+</td>
+<td style="text-align:left;">
+STRAWBERRIES
+</td>
+<td style="text-align:left;">
+ORGANIC
+</td>
+<td style="text-align:left;">
+PROCESSING - SALES
+</td>
+<td style="text-align:left;">
+MEASURED IN $
+</td>
+<td style="text-align:left;">
+MEASURED IN $
+</td>
+<td style="text-align:left;">
+ORGANIC STATUS
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+ORGANIC STATUS: (NOP USDA CERTIFIED)
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+<ol start="4" type="A">
+<li></td>
+<td style="text-align:left;">
+<ol start="4" type="A">
+<li></td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+CENSUS
+</td>
+<td style="text-align:right;">
+2019
+</td>
+<td style="text-align:left;">
+YEAR
+</td>
+<td style="text-align:left;">
+NEW YORK
+</td>
+<td style="text-align:right;">
+36
+</td>
+<td style="text-align:left;">
+STRAWBERRIES
+</td>
+<td style="text-align:left;">
+ORGANIC
+</td>
+<td style="text-align:left;">
+PROCESSING - SALES
+</td>
+<td style="text-align:left;">
+MEASURED IN CWT
+</td>
+<td style="text-align:left;">
+MEASURED IN CWT
+</td>
+<td style="text-align:left;">
+ORGANIC STATUS
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+ORGANIC STATUS: (NOP USDA CERTIFIED)
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+<ol start="4" type="A">
+<li></td>
+<td style="text-align:left;">
+<ol start="4" type="A">
+<li></td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+CENSUS
+</td>
+<td style="text-align:right;">
+2019
+</td>
+<td style="text-align:left;">
+YEAR
+</td>
+<td style="text-align:left;">
+NORTH CAROLINA
+</td>
+<td style="text-align:right;">
+37
+</td>
+<td style="text-align:left;">
+STRAWBERRIES
+</td>
+<td style="text-align:left;">
+ORGANIC - OPERATIONS WITH SALES
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+ORGANIC STATUS
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+ORGANIC STATUS: (NOP USDA CERTIFIED)
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+7
+</td>
+<td style="text-align:left;">
+43.9
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+CENSUS
+</td>
+<td style="text-align:right;">
+2019
+</td>
+<td style="text-align:left;">
+YEAR
+</td>
+<td style="text-align:left;">
+NORTH CAROLINA
+</td>
+<td style="text-align:right;">
+37
+</td>
+<td style="text-align:left;">
+STRAWBERRIES
+</td>
+<td style="text-align:left;">
+ORGANIC - SALES
+</td>
+<td style="text-align:left;">
+MEASURED IN $
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+MEASURED IN $
+</td>
+<td style="text-align:left;">
+ORGANIC STATUS
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+ORGANIC STATUS: (NOP USDA CERTIFIED)
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+87,402
+</td>
+<td style="text-align:left;">
+75.2
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+CENSUS
+</td>
+<td style="text-align:right;">
+2019
+</td>
+<td style="text-align:left;">
+YEAR
+</td>
+<td style="text-align:left;">
+NORTH CAROLINA
+</td>
+<td style="text-align:right;">
+37
+</td>
+<td style="text-align:left;">
+STRAWBERRIES
+</td>
+<td style="text-align:left;">
+ORGANIC - SALES
+</td>
+<td style="text-align:left;">
+MEASURED IN CWT
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+MEASURED IN CWT
+</td>
+<td style="text-align:left;">
+ORGANIC STATUS
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+ORGANIC STATUS: (NOP USDA CERTIFIED)
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+300
+</td>
+<td style="text-align:left;">
+94.1
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+CENSUS
+</td>
+<td style="text-align:right;">
+2019
+</td>
+<td style="text-align:left;">
+YEAR
+</td>
+<td style="text-align:left;">
+NORTH CAROLINA
+</td>
+<td style="text-align:right;">
+37
+</td>
+<td style="text-align:left;">
+STRAWBERRIES
+</td>
+<td style="text-align:left;">
+ORGANIC
+</td>
+<td style="text-align:left;">
+FRESH MARKET - OPERATIONS WITH SALES
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+ORGANIC STATUS
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+ORGANIC STATUS: (NOP USDA CERTIFIED)
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+7
+</td>
+<td style="text-align:left;">
+43.9
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+CENSUS
+</td>
+<td style="text-align:right;">
+2019
+</td>
+<td style="text-align:left;">
+YEAR
+</td>
+<td style="text-align:left;">
+NORTH CAROLINA
+</td>
+<td style="text-align:right;">
+37
+</td>
+<td style="text-align:left;">
+STRAWBERRIES
+</td>
+<td style="text-align:left;">
+ORGANIC
+</td>
+<td style="text-align:left;">
+FRESH MARKET - SALES
+</td>
+<td style="text-align:left;">
+MEASURED IN $
+</td>
+<td style="text-align:left;">
+MEASURED IN $
+</td>
+<td style="text-align:left;">
+ORGANIC STATUS
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+ORGANIC STATUS: (NOP USDA CERTIFIED)
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+87,402
+</td>
+<td style="text-align:left;">
+75.2
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+CENSUS
+</td>
+<td style="text-align:right;">
+2019
+</td>
+<td style="text-align:left;">
+YEAR
+</td>
+<td style="text-align:left;">
+NORTH CAROLINA
+</td>
+<td style="text-align:right;">
+37
+</td>
+<td style="text-align:left;">
+STRAWBERRIES
+</td>
+<td style="text-align:left;">
+ORGANIC
+</td>
+<td style="text-align:left;">
+FRESH MARKET - SALES
+</td>
+<td style="text-align:left;">
+MEASURED IN CWT
+</td>
+<td style="text-align:left;">
+MEASURED IN CWT
+</td>
+<td style="text-align:left;">
+ORGANIC STATUS
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+ORGANIC STATUS: (NOP USDA CERTIFIED)
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+300
+</td>
+<td style="text-align:left;">
+94.1
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+</tr>
+</tbody>
+</table>
+</div></li>
+</ol></li>
+</ol></li>
+</ol></li>
+</ol></li>
+</ol></li>
+</ol></li>
+</ol></li>
+</ol>
+</section></section>
+<section>
+<section id="eda" class="title-slide slide level1" data-background="www/straw_back.png">
+<h1 data-background="www/straw_back.png">EDA</h1>
+<div style="text-align: left">
+<ul>
+<li><p>Organic</p></li>
+<li><p>Chemicals</p></li>
+<li><p>Toxins</p></li>
+</ul>
+</div>
+</section>
+<section id="strawberry-distribution" class="slide level2" data-background="www/straw_back.png">
+<h2 data-background="www/straw_back.png">Strawberry distribution</h2>
+<p><img data-src="figures/str_distribution.png" height="600" width="684"/></p>
+</section></section>
+<section>
+<section id="organic-rate" class="title-slide slide level1" data-background="www/straw_back.png">
+<h1 data-background="www/straw_back.png">Organic Rate</h1>
+<div style="text-align: left">
+<p>This is the organic rate in each state in 2019</p>
+</div>
+<p><img style = "float:left" data-src="figures/2016OrganicProp.png" height="350" width="450" /> <img data-src="figures/2019OrganicProportion.jpg" height="350" width="450" /></p>
+</section>
+<section id="organic-cwt" class="slide level2" data-background="www/straw_back.png">
+<h2 data-background="www/straw_back.png">Organic CWT</h2>
+<figure>
+<img style = "float:left "data-src="figures/2016OrganicCWT.jpg" height="287" width="405" /> <img data-src="figures/2019OrganicCWT.jpg" height="287" width="405" />
+</figure>
+</section>
+<section id="organic-price" class="slide level2" data-background="www/straw_back.png">
+<h2 data-background="www/straw_back.png">Organic Price</h2>
+<figure>
+<img style = "float:left" data-src="figures/2016OrganicPrice.png" height="287px" width="405px" /> <img data-src="figures/2019OrganicPrice.png" height="287px" width="405px" />
+</figure>
+</section></section>
+<section>
+<section id="chemical" class="title-slide slide level1" data-background="www/straw_back.png">
+<h1 data-background="www/straw_back.png">Chemical</h1>
+<div style="text-align: left">
+<p><br>Overview of Chemical usage in 2019 and 2016<br></p>
+</div>
+<p><img style = "float:left" data-src="figures/2019_pest.png" height="287px" width="405px" /> <img data-src="figures/2016_pest.png" height="287px" width="405px" /></p>
+</section>
+<section id="chemical-percentage-in-2016" class="slide level2">
+<h2>Chemical Percentage in 2016</h2>
+<p><img style = "float:left" data-src="figures/2016_c.png" height="287px" width="405px" /> <img data-src="figures/2016_f.png" height="287px" width="405px" /></p>
+</section>
+<section id="chemical-percentage-in-2019" class="slide level2">
+<h2>Chemical Percentage in 2019</h2>
+<p><img style = "float:left" data-src="figures/pie_c.png" height="287px" width="405px" /> <img data-src="figures/pie_f.png" height="287px" width="405px" /></p>
+</section></section>
+<section id="chemical-usage" class="title-slide slide level1" data-background="www/straw_back.png">
+<h1 data-background="www/straw_back.png">Chemical Usage</h1>
+<div style="text-align: left">
+<p>This part we will show the chemical people use to grow strawberries of each state in 2019.</p>
+</div>
+<ul>
+<li><a href="figures/plotly_test.html">2019-California</a><br></li>
+<li><a href="figures/plotly_f.html">2019-Florida</a></li>
+</ul>
+</section>
+
+<section id="toxin-analysis" class="title-slide slide level1" data-background="www/straw_back.png">
+<h1 data-background="www/straw_back.png">Toxin Analysis</h1>
+<figure>
+<img data-src="figures/toxin1.png"/> <img data-src="figures/toxin2.png" height="250" width="720"/>
+</figure>
+</section>
+
+<section id="conclusion" class="title-slide slide level1" data-background="www/straw_back.png">
+<h1 data-background="www/straw_back.png">Conclusion</h1>
+<ul>
+<li><p>Since the dataset in imbalanced, most observations are from California, thus it is almost meaningless to compare the sum of organic value. And since all observations from New York State, North Carolina, Oregon and Washington are organic in 2019, it is meaningless to compare the Organic proportions in 2016 and 2019 as well.</p></li>
+<li><p>Chemical substances affect both humans and bees. Among the above-mentioned chemical substances, there are 53 species that have greater side effects on bees. Most of these chemicals contain Carcinogen and Hormone Disruptor, which can cause harm to humans. Therefore, we call for reducing the use of chemical.</p></li>
+<li></li>
+</ul>
+</section>
+
+<section id="shiny" class="title-slide slide level1" data-background="www/straw_back.png">
+<h1 data-background="www/straw_back.png">Shiny</h1>
+<p><a href="https://yulijin.shinyapps.io/midterm/">Strawberry</a></p>
+</section>
+
+<section id="reference" class="title-slide slide level1" data-background="www/straw_back.png">
+<h1 data-background="www/straw_back.png">Reference</h1>
+<p>Images - <a href="https://www.bing.com/images/search?view=detailV2&amp;ccid=UFTDjx%2fJ&amp;id=FE80ECCBC548846EACCF294A20EB1386D8198681&amp;thid=OIP.UFTDjx_JY7oF4lzUKhe7nAHaHa&amp;mediaurl=https%3a%2f%2fth.bing.com%2fth%2fid%2fR.5054c38f1fc963ba05e25cd42a17bb9c%3frik%3dgYYZ2IYT6yBKKQ%26riu%3dhttp%253a%252f%252fclipart-library.com%252fimg%252f2082953.jpg%26ehk%3doyGHrXIhE1S03m5xiDxNvNlgRqXlnjvADfGkZUqhMsA%253d%26risl%3d%26pid%3dImgRaw%26r%3d0&amp;exph=1252&amp;expw=1252&amp;q=Cute+Animated+Strawberry&amp;simid=608025162911208268&amp;FORM=IRPRST&amp;ck=AE3AFE67B255B828FDD5068D5014DC81&amp;selectedIndex=12">Bing images – Strawberry</a></p>
+</section>
+    </div>
+  </div>
+
+  <script src="presentation_strawberry_team9_files/reveal.js-3.3.0.1/lib/js/head.min.js"></script>
+  <script src="presentation_strawberry_team9_files/reveal.js-3.3.0.1/js/reveal.js"></script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        // Push each slide change to the browser history
+        history: true,
+        // Vertical centering of slides
+        center: false,
+        // Transition style
+        transition: 'slide', // none/fade/slide/convex/concave/zoom
+        // Transition style for full page slide backgrounds
+        backgroundTransition: 'default', // none/fade/slide/convex/concave/zoom
+
+        menu: {
+   
+    
+    
+    
+    
+    
+    
+ 
+          custom: false,
+          themes: false,
+          transitions: false
+        },
+
+
+
+        // Optional reveal.js plugins
+        dependencies: [
+          { src: 'presentation_strawberry_team9_files/reveal.js-3.3.0.1/plugin/menu/menu.js', async: true },
+        ]
+      });
+    </script>
+  <!-- dynamically load mathjax for compatibility with self-contained -->
+  <script>
+    (function () {
+      var script = document.createElement("script");
+      script.type = "text/javascript";
+      script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+      document.getElementsByTagName("head")[0].appendChild(script);
+    })();
+  </script>
+
+<script>
+  (function() {
+    if (window.jQuery) {
+      Reveal.addEventListener( 'slidechanged', function(event) {  
+        window.jQuery(event.previousSlide).trigger('hidden');
+        window.jQuery(event.currentSlide).trigger('shown');
+      });
+    }
+  })();
+</script>
+
+
+  </body>
+</html>
