@@ -1,0 +1,294 @@
+---
+title: "Group9_Report"
+author: "XihaoCao"
+date: "2021/11/3"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r echo=FALSE}
+# Load every library we need
+library(tidyverse)
+library(magrittr)
+library(ggplot2)
+library(plotly)
+library(DT)
+library(rvest)
+library(dplyr)
+library(scales)
+library(maps)
+```
+
+#### Members: JinYu Li, Li Jinyu, Biyao, Zhang, Xihao Cao
+## Introduction:
+In this Midtern project, our group want to explore the pesticide usage situation of straberries in Florida, Washington, New York State, California,
+North Carolina, and Oregon. There are mainly three parts of this projects: initial EDA, illustration of data using shiny, and final conclusion. The
+data set contain data from four different years, since most observations come from 2019 and 2016, we decide to only focus on those two years.  
+
+## Data set:
+The three data sets we use are the USDA strawberry data set, the insectisides data set, and the herbicides-hungicide-other data set.
+
+## Two Main questions we want to ask and answer:
+1. What is the pesticide usage in planting straberries in each state? which one is prefered and what is the organic proportion in each state in 2019 and 2016?
+2. Which kind of toxicity is potentially more possible to encounter in each state in 2019 and 2016?
+
+## EDA:
+### The two images below indicate the Organic Proprotion of each state in 2016 and 2019.
+
+```{r echo=FALSE, results='hide', warning=FALSE}
+#曹熙昊的码
+# Firstly get the tidy data set and know how many states are there in the data set.
+source('test1025.R')
+info <- combine()
+states <- distinct(info, State)
+total <- nrow(states)
+
+# Return the organic proportion in a given state and year.
+organicP <- function(name, year) {
+  temp <- dplyr::filter(info, Year==year)
+  temp <- dplyr::filter(temp, State == name)
+  total <- nrow(temp)
+  matches <- grepl(c('ORGANIC'), temp$items)
+  o_number <- length(matches[matches==T])
+  return(round(o_number / total, 2))
+}
+
+# Return the organic price value or CWT value in a given state
+# and year. (price unit is 1000$)
+organicV <- function(name, year, type) {
+  temp <- dplyr::filter(info, Year==year)
+  temp <- dplyr::filter(temp, State == name)
+  temp <- dplyr::filter(temp, Value != ' (D)')
+  if (type == 'price') {
+    temp <- dplyr::filter(temp, measurement != 'MEASURED IN $')
+  } else if (type == 'CWT') {
+    temp <- dplyr::filter(temp, measurement != 'MEASURED IN CWT')
+  } else stop('The type input should be either price or CWT, try again')
+  matches <- grepl(c('ORGANIC'), temp$items)
+  ovector <- as.numeric((gsub(",", "", temp$Value[matches])))
+  return(round(sum(ovector)/ 1000))
+}
+
+
+# Plot the organic proportion in a given year.
+plot_p <- function(year){
+  oratio <- data.frame('States'=states, 'Ratio'=rep(0, length(states)))
+  for(i in 1:total) {
+    oratio[i, 2] <- organicP(oratio[i, 1], year)
+  }
+  ggplot(data=oratio) + geom_bar(mapping = aes(x=State, y=Ratio), stat = 'identity', fill = 'Orange') + 
+    theme(axis.text.x=element_text(angle = 90, hjust = 0)) +
+    ggtitle(paste('Organic proportion of each state in', year)) +
+    geom_text(aes(x=State, y=Ratio, label=Ratio)) + ylim(0, 1)
+}
+
+# Plot the organic price value or CWT value in a given year and type(price unit is 1000$)
+plot_v <- function(year, type){
+  ovalue <- data.frame('States'=states, 'Value'=rep(0, length(states)))
+  for(i in 1:total) {
+    ovalue[i, 2] <- organicV(ovalue[i, 1], year, type)
+  }
+  
+  graph <- ggplot(data=ovalue) + geom_bar(mapping = aes(x=State, y=Value), stat = 'identity', fill = 'orange') + 
+    theme(axis.text.x=element_text(angle = 90, hjust = 0)) + geom_text(aes(x=State, y=Value, label=Value))
+  
+  if (type == 'price') {
+    graph + ggtitle(paste('Organic price value of each state (with unit 1000) in', year)) + ylim(0, 3000)
+  } else {
+    graph + ggtitle(paste('Organic CWT value of each state in', year))
+  }
+}
+```
+
+
+```{r}
+# Now make the two plots
+plot_p(2016)
+plot_p(2019)
+```
+
+
+### Since there are two measurement scales: in dollar$ and in CWT score, We show the organice value in two measurment scales seperately.
+The two images below indicate the Organic Value (measure in dollar, unit is 1000$) of each state in 2016 and 2019.
+```{r}
+plot_v(2016, 'price')
+plot_v(2019, 'price')
+```
+
+
+### The two images below indicate the Organic Value (measure in CWT) of each state in 2016 and 2019.
+```{r}
+plot_v(2016, 'CWT')
+plot_v(2019, 'CWT')
+```
+
+
+### Then we explored the usage of different kinds of pesticide in each state in 2016 and 2019.
+
+```{r eval=FALSE}
+#张姐的码
+source('test1025.R')
+result<-combine()
+
+chemical<-filter(result,dname=="CHEMICAL")
+chemical_type<-summarise(group_by(chemical,State),count=n())
+chemical_type1<-summarise(group_by(chemical,type),count=n())
+chemical_type2<-summarise(group_by(chemical,Year),count=n())
+#筛选出19年的数据
+chemical_19<-filter(chemical,Year=="2019")
+FUNGICIDE_19<-summarise(group_by(filter(chemical_19,type=="FUNGICIDE"),State),count=n())
+HERBICIDE_19<-summarise(group_by(filter(chemical_19,type=="HERBICIDE"),State),count=n())
+INSECTICIDE_19<-summarise(group_by(filter(chemical_19,type=="INSECTICIDE"),State),count=n())
+OTHER_19<-summarise(group_by(filter(chemical_19,type=="OTHER"),State),count=n())
+CALIFORNIA_19<-summarise(group_by(filter(chemical_19,State=="CALIFORNIA"),type),count=n())
+FLORIDA_19<-summarise(group_by(filter(chemical_19,State=="FLORIDA"),type),count=n())
+#筛选出18年的数据
+chemical_18<-filter(chemical,Year=="2018")
+FUNGICIDE_18<-summarise(group_by(filter(chemical_18,type=="FUNGICIDE"),State),count=n())
+HERBICIDE_18<-summarise(group_by(filter(chemical_18,type=="HERBICIDE"),State),count=n())
+INSECTICIDE_18<-summarise(group_by(filter(chemical_18,type=="INSECTICIDE"),State),count=n())
+OTHER_18<-summarise(group_by(filter(chemical_18,type=="OTHER"),State),count=n())
+CALIFORNIA_18<-summarise(group_by(filter(chemical_18,State=="CALIFORNIA"),type),count=n())
+#FLORIDA_18<-summarise(group_by(filter(chemical_18,State=="FLORIDA"),type),count=n())
+
+#绘图 2019CALIFORNIA
+#CALIFORNIA <- data.frame(CALIFORNIA)
+o_status = c("FUNGICIDE","HERBICIDE","INSECTICIDE","OTHER")
+plot_ly(CALIFORNIA_19,x=~type,y = ~count,color = o_status,alpha = 0.5) %>%
+  #add_text(text = 'test') %>%
+  #add_markers() %>%
+  add_bars() %>%
+  layout(
+    title = '2019CALIFORIA',
+    legend = list(
+      borderwidth = 1,
+      orientation = 'h'
+    ),
+    xaxis = list(title = ""), #去掉X轴名称type 
+    margin = list(
+      l = 70,
+      r = 80
+    )
+  )
+
+#绘图 2019FLORIDA
+o_status = c("FUNGICIDE","HERBICIDE","INSECTICIDE","OTHER")
+plot_ly(FLORIDA_19,x =~type,y = ~count,color = o_status,alpha = 0.5) %>%
+  #add_text(text = 'test') %>%
+  #add_markers() %>%
+  add_bars() %>%
+  layout(
+    title = '2019FLORIDA',
+    legend = list(
+      borderwidth = 1,
+      orientation = 'h'
+    ),
+    margin = list(
+      l = 70,
+      r = 80
+    )
+  )
+#绘图 2018CALIFORNIA
+o_status = c("FUNGICIDE","HERBICIDE","INSECTICIDE")
+plot_ly(CALIFORNIA_18,x =~type,y = ~count,color = o_status,alpha = 0.5) %>%
+  #add_text(text = 'test') %>%
+  #add_markers() %>%
+  add_bars() %>%
+  layout(
+    title = '2018CALIFORIA',
+    legend = list(
+      borderwidth = 1,
+      orientation = 'h'
+    ),
+    margin = list(
+      l = 70,
+      r = 80
+    )
+  )
+
+
+```
+
+
+### At last, we explore the toxicities each state is possible to encounter in 2019 and 2016:
+
+```{r echo=FALSE}
+#李师傅的码
+source('test1025.R')
+
+if(!require(tidyverse)) install.packages("tidyverse")
+if(!require(ggplot2)) install.packages("ggplot2", repos = "http://cran.us.r-project.org")
+if(!require(ggpubr)) install.packages("ggpubr", repos = "http://cran.us.r-project.org")
+
+# load the data from test1025.R
+
+df1 <- combine()
+# dname1 <- 'CHEMICAL'
+# year <- 2019
+
+# df1_test <-  df1 %>% filter(dname == dname1 & Year == year)
+# df1_stat <- df1_test %>% group_by(State, type) %>% summarise(count = n())
+# df2_stat <- df1 %>% group_by(Year, State) %>% summarise(count = n())
+
+# # df1_stat_name <- df1_test %>% group_by(State, type, Pesticide_old)
+#   
+# p <- df1_stat %>% ggplot() + geom_bar(mapping = aes(x = as.factor(State), y = count, fill = type), 
+#                                       stat = "identity", alpha = 0.5) +
+#   theme_bw() + labs(x = "State", y = "Pesticide")
+
+plot_chem <- function(year, dname1, plot_type, state = "California"){
+  df1_test <- df1 %>% filter(dname == dname1 & Year == year)
+  df1_stat <- df1_test %>% group_by(State, type) %>% summarise(count = n())
+  if (plot_type == "bar"){
+    p <- df1_stat %>% ggplot() + 
+      geom_bar(mapping = 
+                 aes(x = as.factor(State), y = count, fill = type), stat = "identity", alpha = 0.5) +
+      theme_bw() +
+      labs(x = "State", y = "Pesticide")
+  } else if (plot_type == "pie"){
+    state %<>% toupper()
+    df1_stat_state <- df1_stat %>% filter(State == state)
+    percentage <- scales::percent(df1_stat_state$count / sum(df1_stat_state$count))
+    labs <- percentage #set the labs
+    # labs <- paste(df1_stat_state$type, '(', percentage, ')', sep = '') #set the labs
+    # p <- df1_stat_state %>% ggplot(aes(x = "", y = count, fill = type)) + 
+    #   geom_bar(stat = "identity", width = 1) +
+    #   # geom_text(aes(label = labs)) +
+    #   # theme_bw() +
+    #   # labs(x = "", y = "", title = paste0("Chemical usage percentage in",state)) + 
+    #   coord_polar(theta = "y", start = 0, direction = 1)
+    p1 <- df1_stat_state %>% 
+      ggpie(x = "count", 
+            fill = "type", 
+            palette = "jco",
+            label = labs, lab.pos = "in", lab.font = c(4, "white"))
+    p <- p1 %>% ggpar(title = paste0("Chemical usage percentage in ",state, " in ", year),
+                      legend = "right")
+  } else {
+    stop("Please check the State!!")
+  }
+  
+  p
+}
+```
+
+```{r}
+plot_chem(2019, 'CHEMICAL', "bar")
+plot_chem(2016, 'CHEMICAL', "bar")
+plot_chem(2019, 'CHEMICAL', "pie")
+plot_chem(2019, 'CHEMICAL', "pie", "FLORIDA")
+```
+
+
+## Shiny:
+We build a simple shiny interface here:  https://yulijin.shinyapps.io/midterm/
+
+## Final Conclusion:
+1. Since the dataset in imbalanced, most observations are from California, thus it is almost meaningless to compare the sum of organic value. And since all observations from New York State, North Carolina, Oregon and Washington are organic in 2019, it is meaningless to compare the Organic proportions  in 2016 and 2019 as well.
+
+2. bla bla bla
+
+3. bla bla bla

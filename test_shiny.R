@@ -14,41 +14,29 @@ library(DT)
 library(rvest)
 library(scales)
 
+# The shiny script generally divided into 3 parts. 
+# First part prepares the data for the shiny. 
+# Second part set the ui for the shiny.
+# Third part set the server for the shiny.
+# We comment notes in each part and the comments start with '#'
 
-source('test1025.R')
-df1<-combine()
+# source('test1025.R')
+# df1<-combine()
+# write.csv(df1, file = "my_data.csv")
+# read data
+df1<-read.csv('my_data.csv')
+# read map data
 data(state.fips)
+#convert map data form
 mapstate=st_as_sf(maps::map('state',plot = F,fill = T))
+# upper the character
 pop <- paste("State:",toupper(mapstate$ID))
 
-#sub_state=mapstate %>% filter(ID %in% c("california","florida","oregon","washington"))
-
-
-# mymap<-leaflet(mapstate)%>%
-#   addTiles()%>%
-#   addPolygons(data = sub_state,
-#               stroke = T,fillOpacity = 0.2,weight = 0.5,
-#               color = "red") %>%
-#   addPolygons(data=mapstate,label=pop,color='white',stroke = T,fillOpacity = 0,weight = 0.5) %>%  addMiniMap()
-# mymap %>% addProviderTiles(providers$HikeBike.HikeBike)
-# mymap %>% addProviderTiles(providers$Esri.DeLorme)
-
-
-# Year_map(2016)
-# tmpdf=df1 %>% filter(Year == 2019) %>% group_by(State) %>% summarise(count = n())
-# Year_map(tmpdf)
-#colorBin("Greens", domain = 0:100)
-
-
-
-#labFormat = labelFormat(prefix = "??"), 
-
 # Firstly get the tidy data set and know how many states are there in the data set.
-
-info <- combine()
+info <- df1
 states <- distinct(info, State)
 total <- nrow(states)
-
+# calculate the organic proportion
 organicP <- function(name, year) {
   temp <- dplyr::filter(info, Year==year)
   temp <- dplyr::filter(temp, State == name)
@@ -97,17 +85,11 @@ plot_v <- function(year, type){
     geom_text(aes(x=State, y=Value, label=Value))+theme_bw()
 }
 
-
-#https://post.healthline.com/wp-content/uploads/2020/08/strawberries-1200x628-facebook.20180419205234528-1200x628.jpg
-#https://www.bing.com/images/search?view=detailV2&ccid=UFTDjx%2fJ&id=FE80ECCBC548846EACCF294A20EB1386D8198681&thid=OIP.UFTDjx_JY7oF4lzUKhe7nAHaHa&mediaurl=https%3a%2f%2fth.bing.com%2fth%2fid%2fR.5054c38f1fc963ba05e25cd42a17bb9c%3frik%3dgYYZ2IYT6yBKKQ%26riu%3dhttp%253a%252f%252fclipart-library.com%252fimg%252f2082953.jpg%26ehk%3doyGHrXIhE1S03m5xiDxNvNlgRqXlnjvADfGkZUqhMsA%253d%26risl%3d%26pid%3dImgRaw%26r%3d0&exph=1252&expw=1252&q=Cute+Animated+Strawberry&simid=608025162911208268&FORM=IRPRST&ck=AE3AFE67B255B828FDD5068D5014DC81&selectedIndex=12
-
-##Master Li's wode:
+##Jinyu Li's wode:
 df1 = info 
 dname1 <- 'CHEMICAL'
-year <- 2019
-df1_test <-  df1 %>% filter(Year == year)
-df1_stat <- df1_test %>% group_by(State) %>% summarise(count = n())
 
+#Plot multipile graphs in one plot
 multiplot <- function(..., plotlist=NULL, file, cols=1, layout=NULL) {
   library(grid)
   # Multiple plot function
@@ -153,6 +135,7 @@ multiplot <- function(..., plotlist=NULL, file, cols=1, layout=NULL) {
   }
 }
 
+#plot chemical plot
 plot_chem <- function(df1,year, dname1, plot_type, state = "California"){
   df1_test <- df1 %>% filter(dname == dname1 & Year == year)
   df1_stat <- df1_test %>% group_by(State, type) %>% summarise(count = n())
@@ -196,14 +179,13 @@ plot_chem <- function(df1,year, dname1, plot_type, state = "California"){
   p
 }
 
-###
+#get plotly graph
 result=info
-
-chemical<-filter(result,dname=="CHEMICAL")
+chemical<-filter(result,dname=="CHEMICAL") 
 chemical_type<-summarise(group_by(chemical,State),count=n())
 chemical_type1<-summarise(group_by(chemical,type),count=n())
 chemical_type2<-summarise(group_by(chemical,Year),count=n())
-#筛选出19年的数据
+#screen data in 2019
 chemical_19<-filter(chemical,Year=="2019")
 FUNGICIDE_19<-summarise(group_by(filter(chemical_19,type=="FUNGICIDE"),State),count=n())
 HERBICIDE_19<-summarise(group_by(filter(chemical_19,type=="HERBICIDE"),State),count=n())
@@ -211,7 +193,7 @@ INSECTICIDE_19<-summarise(group_by(filter(chemical_19,type=="INSECTICIDE"),State
 OTHER_19<-summarise(group_by(filter(chemical_19,type=="OTHER"),State),count=n())
 CALIFORNIA_19<-summarise(group_by(filter(chemical_19,State=="CALIFORNIA"),type),count=n())
 FLORIDA_19<-summarise(group_by(filter(chemical_19,State=="FLORIDA"),type),count=n())
-#筛选出18年的数据
+#screen data in 2018
 chemical_18<-filter(chemical,Year=="2018")
 FUNGICIDE_18<-summarise(group_by(filter(chemical_18,type=="FUNGICIDE"),State),count=n())
 HERBICIDE_18<-summarise(group_by(filter(chemical_18,type=="HERBICIDE"),State),count=n())
@@ -220,7 +202,7 @@ OTHER_18<-summarise(group_by(filter(chemical_18,type=="OTHER"),State),count=n())
 CALIFORNIA_18<-summarise(group_by(filter(chemical_18,State=="CALIFORNIA"),type),count=n())
 #FLORIDA_18<-summarise(group_by(filter(chemical_18,State=="FLORIDA"),type),count=n())
 
-#绘图 2019CALIFORNIA
+#graph 2019CALIFORNIA
 #CALIFORNIA <- data.frame(CALIFORNIA)
 o_status = c("FUNGICIDE","HERBICIDE","INSECTICIDE","OTHER")
 CALIFORNIA_19<-plot_ly(CALIFORNIA_19,x =~type,y = ~count,color = o_status,alpha = 0.5) %>%
@@ -240,7 +222,7 @@ CALIFORNIA_19<-plot_ly(CALIFORNIA_19,x =~type,y = ~count,color = o_status,alpha 
   ) %>% layout(
     xaxis = list(title = "")
   )
-#绘图 2019FLORIDA
+#graph 2019FLORIDA
 o_status = c("FUNGICIDE","HERBICIDE","INSECTICIDE","OTHER")
 FLORIDA_19<-plot_ly(FLORIDA_19,x =~type,y = ~count,color = o_status,alpha = 0.5) %>%
   #add_text(text = 'test') %>%
@@ -259,7 +241,7 @@ FLORIDA_19<-plot_ly(FLORIDA_19,x =~type,y = ~count,color = o_status,alpha = 0.5)
   ) %>% layout(
     xaxis = list(title = "")
   )
-#绘图 2018CALIFORNIA
+#graph 2018CALIFORNIA
 o_status = c("FUNGICIDE","HERBICIDE","INSECTICIDE")
 CALIFORNIA_18<-plot_ly(CALIFORNIA_18,x =~type,y = ~count,color = o_status,alpha = 0.5) %>%
   #add_text(text = 'test') %>%
@@ -276,16 +258,15 @@ CALIFORNIA_18<-plot_ly(CALIFORNIA_18,x =~type,y = ~count,color = o_status,alpha 
       r = 80
     )
   )
-#df1<-combine()
-# choiceNames = list("2016","2017","2018","2019","2020"),
-# choiceValues = list(2016,2017,2018,2019,2020)
 
+#set ui
 ui <- dashboardPage(
-  dashboardHeader(title='Strawberry'),skin = "red",
+  #set header sidebar body
+  dashboardHeader(title='Strawberry'),skin = "red", 
   dashboardSidebar(sidebarMenu(
     menuItem("Dashboard", tabName = "dashboard", icon = icon("dashboard")),
     menuItem("EDA",icon = icon("bar-chart-o"),
-             menuSubItem("Pesticide Overview",tabName = "P_vs_O"),
+             menuSubItem("Chemical Overview",tabName = "P_vs_O"),
              menuSubItem("Organic vs Chemical",tabName = "organicvspesticides"))
   )),
   dashboardBody(
@@ -293,7 +274,7 @@ ui <- dashboardPage(
       # First tab content
       tabItem(tabName = "dashboard",
         fluidRow(
-        setBackgroundImage(
+        setBackgroundImage( #set background
           src = "straw_back2.png",shinydashboard=T
         ),
         tabBox(width = 10,
@@ -319,11 +300,11 @@ ui <- dashboardPage(
       # Second tab content
       tabItem(tabName = "P_vs_O",
               fluidPage(
-                titlePanel("Pesticide Overview"),
+                titlePanel("Chemical Overview"),
                 
                 box(width = 4,height=12,
                     plotOutput("DF"),
-                    title = "Pesticide Overview",
+                    title = "Chemical Overview",
                     selectInput("Year_PD", "The Type of Plot:",
                                 c("2016" = 2016,
                                   "2019" = 2019)),
@@ -349,10 +330,11 @@ ui <- dashboardPage(
 
                 )
               )),
+      # Third tab content
       tabItem(
               tabName = "organicvspesticides",
               fluidPage(
-                titlePanel("Organic vs Pesticides"),
+                titlePanel("Organic vs Cheminal"),
                 
                 box(width = 4,height=12,
                     title = "Organic Proportion and Value",    
@@ -374,38 +356,35 @@ ui <- dashboardPage(
                     )
               )
       )
-      
-      
-      
-      
-      
+     
       )
     )
   )
 
-
-
+# set server
 server <- function(input, output) { 
-  pie_map <- reactive({
+  pie_map <- reactive({# use try to identify if the proper plot can appear
     if('try-error' %in% class(try(plot_chem(df1,year=input$Year_PD2, 'CHEMICAL', 'pie',state=input$Type_State),silent=TRUE))){
      ggplot(data = data.frame(x = "No data"), aes(x=x))+theme_bw()
     }else{plot_chem(df1,year=input$Year_PD2, 'CHEMICAL', 'pie',state=input$Type_State)
     }
    })
-  tmp_map <- reactive({
+  tmp_map <- reactive({#map reactive
     y<-as.numeric(input$sc)
-    tmpdf<-df1 %>% dplyr::filter(Year %in% y )%>% group_by(State) %>% summarise(count = n()) 
-    colnames(tmpdf)[1]="ID"
-    tmpdf$ID<-tolower(tmpdf$ID)
-    sub_state<-inner_join(mapstate,tmpdf,by='ID')
+    tmpdf<-df1 %>% dplyr::filter(Year %in% y )%>% group_by(State) %>% summarise(count = n()) #groupby year
+    colnames(tmpdf)[1]="ID"   #change ID
+    tmpdf$ID<-tolower(tmpdf$ID) #lower ID 
+    sub_state<-inner_join(mapstate,tmpdf,by='ID') #inner join two dataframe
+    #set color
     pal <- colorNumeric(
         palette = "Reds",
         domain = sub_state$count
       )
+    #change pop text
     pop_modi<-pop
     modi<-paste(pop[which(mapstate$ID %in% sub_state$ID)],"count:",sub_state$count)
-    pop_modi[which(mapstate$ID %in% sub_state$ID)]<-modi
-      
+    pop_modi[which(mapstate$ID %in% sub_state$ID)]<-modi 
+    # leaflet plot add two polygons minimap and legend
     map2<-leaflet(mapstate) %>% addTiles() %>% 
         addPolygons(data=sub_state,stroke = FALSE, smoothFactor = 0.2, fillOpacity = .7,
                     color = ~pal(sub_state$count)) %>% 
@@ -420,16 +399,14 @@ server <- function(input, output) {
     
   })
   output$map1 <- renderLeaflet(
+    # use leaflet plot
     tmp_map() %>% addProviderTiles(providers$Esri.NatGeoWorldMap)
     )
-    # Use leaflet() plot
-     
-    
-  output$map2 <- renderLeaflet({
-    # Use leaflet() plot
+  output$map2 <- renderLeaflet({ 
+    # use leaflet plot and use another title
     tmp_map() %>% addProviderTiles(providers$Esri.DeLorme)
   })
-  output$OR <- renderPlot({
+  output$OR <- renderPlot({ #use ggplot
     if (input$rb=='Proportion'){plot_p(input$Year) %>% print()}
     #if (input$rb=='Value'){plot_v(input$Year) %>% print()}
     if (input$rb=='Value CWT'){plot_v(input$Year,'CWT') %>% print()}
@@ -437,27 +414,19 @@ server <- function(input, output) {
     
   
   })
-  output$DF <- renderPlot({
+  output$DF <- renderPlot({ #use ggplot
     plot_chem(df1,input$Year_PD, 'CHEMICAL', input$Type_PD)
     
   })
 
-  output$DF_pie <- renderPlot({
+  output$DF_pie <- renderPlot({ # use ggplot 
     pie_map() 
     #plot_chem(df1,year=input$Year_PD2, 'CHEMICAL', 'pie',state=input$Type_State)
-    
   })
-  # output$Chemical_Count<-renderPlotly({
-  #   #if (input$Year_State=='CALIFORNIA_18'){CALIFORNIA_18 %>% print()}
-  #   CALIFORNIA_18
-  # })
-  output$Chemi <- renderPlotly({
+  output$Chemi <- renderPlotly({ #use plotly
     #plot_ly(iris, x = ~get(input$choice), y = ~Sepal.Length, type = 'scatter', mode = 'markers') %>% print()
     if (input$Year_State=='CALIFORNIA2019'){CALIFORNIA_19 %>% print()}
     else if (input$Year_State=='FLORIDA2019'){FLORIDA_19 %>% print()}
-
-    
-
   })
   
   }
