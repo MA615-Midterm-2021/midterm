@@ -1,5 +1,5 @@
 # midterm
-This is for the midterm project about Strawberry
+This is for the midterm project in MA615 about Strawberry
 
 
 Team member: Yuli Jin, Biyao Zhang, Xihao Cao, Jinyu Li
