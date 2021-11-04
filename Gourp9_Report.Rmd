@@ -1,25 +1,28 @@
 ---
 title: "Group9_Report"
-author: "XihaoCao"
 date: "2021/11/3"
-output: pdf_document
+output:
+     pdf_document: 
+         latex_engine: pdflatex
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-```{r echo=FALSE}
+```{r echo=FALSE, result=FALSE, message=FALSE}
 # Load every library we need
 library(tidyverse)
 library(magrittr)
-library(ggplot2)
 library(plotly)
 library(DT)
 library(rvest)
-library(dplyr)
 library(scales)
 library(maps)
+library(ggpubr)
+library(formattable)
+library(data.table)
+library(webshot)
 ```
 
 #### Members: JinYu Li, Li Jinyu, Biyao, Zhang, Xihao Cao
@@ -38,8 +41,7 @@ The three data sets we use are the USDA strawberry data set, the insectisides da
 ## EDA:
 ### The two images below indicate the Organic Proprotion of each state in 2016 and 2019.
 
-```{r echo=FALSE, results='hide', warning=FALSE}
-#曹熙昊的码
+```{r echo=FALSE}
 # Firstly get the tidy data set and know how many states are there in the data set.
 source('test1025.R')
 info <- combine()
@@ -79,7 +81,7 @@ plot_p <- function(year){
   for(i in 1:total) {
     oratio[i, 2] <- organicP(oratio[i, 1], year)
   }
-  ggplot(data=oratio) + geom_bar(mapping = aes(x=State, y=Ratio), stat = 'identity', fill = 'Orange') + 
+  ggplot(data=oratio) + geom_bar(mapping = aes(x=State, y=Ratio), stat = 'identity', fill = 'Orange', alpha = 0.5) + 
     theme(axis.text.x=element_text(angle = 90, hjust = 0)) +
     ggtitle(paste('Organic proportion of each state in', year)) +
     geom_text(aes(x=State, y=Ratio, label=Ratio)) + ylim(0, 1)
@@ -92,7 +94,7 @@ plot_v <- function(year, type){
     ovalue[i, 2] <- organicV(ovalue[i, 1], year, type)
   }
   
-  graph <- ggplot(data=ovalue) + geom_bar(mapping = aes(x=State, y=Value), stat = 'identity', fill = 'orange') + 
+  graph <- ggplot(data=ovalue) + geom_bar(mapping = aes(x=State, y=Value), stat = 'identity', fill = 'orange', alpha = 0.5) + 
     theme(axis.text.x=element_text(angle = 90, hjust = 0)) + geom_text(aes(x=State, y=Value, label=Value))
   
   if (type == 'price') {
@@ -103,8 +105,7 @@ plot_v <- function(year, type){
 }
 ```
 
-
-```{r}
+```{r echo=FALSE, message=FALSE}
 # Now make the two plots
 plot_p(2016)
 plot_p(2019)
@@ -113,31 +114,28 @@ plot_p(2019)
 
 ### Since there are two measurement scales: in dollar$ and in CWT score, We show the organice value in two measurment scales seperately.
 The two images below indicate the Organic Value (measure in dollar, unit is 1000$) of each state in 2016 and 2019.
-```{r}
+```{r echo=FALSE, message=FALSE}
 plot_v(2016, 'price')
 plot_v(2019, 'price')
 ```
 
 
 ### The two images below indicate the Organic Value (measure in CWT) of each state in 2016 and 2019.
-```{r}
+```{r echo=FALSE, message=FALSE}
 plot_v(2016, 'CWT')
 plot_v(2019, 'CWT')
 ```
 
 
-### Then we explored the usage of different kinds of pesticide in each state in 2016 and 2019.
-
-```{r eval=FALSE}
-#张姐的码
+### Then we explored the usage of different kinds of chemical in each state in 2019.
+```{r echo=FALSE, message=FALSE}
 source('test1025.R')
-result<-combine()
 
-chemical<-filter(result,dname=="CHEMICAL")
+chemical<-filter(info ,dname=="CHEMICAL")
 chemical_type<-summarise(group_by(chemical,State),count=n())
 chemical_type1<-summarise(group_by(chemical,type),count=n())
 chemical_type2<-summarise(group_by(chemical,Year),count=n())
-#筛选出19年的数据
+#
 chemical_19<-filter(chemical,Year=="2019")
 FUNGICIDE_19<-summarise(group_by(filter(chemical_19,type=="FUNGICIDE"),State),count=n())
 HERBICIDE_19<-summarise(group_by(filter(chemical_19,type=="HERBICIDE"),State),count=n())
@@ -145,7 +143,7 @@ INSECTICIDE_19<-summarise(group_by(filter(chemical_19,type=="INSECTICIDE"),State
 OTHER_19<-summarise(group_by(filter(chemical_19,type=="OTHER"),State),count=n())
 CALIFORNIA_19<-summarise(group_by(filter(chemical_19,State=="CALIFORNIA"),type),count=n())
 FLORIDA_19<-summarise(group_by(filter(chemical_19,State=="FLORIDA"),type),count=n())
-#筛选出18年的数据
+#
 chemical_18<-filter(chemical,Year=="2018")
 FUNGICIDE_18<-summarise(group_by(filter(chemical_18,type=="FUNGICIDE"),State),count=n())
 HERBICIDE_18<-summarise(group_by(filter(chemical_18,type=="HERBICIDE"),State),count=n())
@@ -153,8 +151,10 @@ INSECTICIDE_18<-summarise(group_by(filter(chemical_18,type=="INSECTICIDE"),State
 OTHER_18<-summarise(group_by(filter(chemical_18,type=="OTHER"),State),count=n())
 CALIFORNIA_18<-summarise(group_by(filter(chemical_18,State=="CALIFORNIA"),type),count=n())
 #FLORIDA_18<-summarise(group_by(filter(chemical_18,State=="FLORIDA"),type),count=n())
+```
 
-#绘图 2019CALIFORNIA
+```{r echo=FALSE}
+#2019CALIFORNIA
 #CALIFORNIA <- data.frame(CALIFORNIA)
 o_status = c("FUNGICIDE","HERBICIDE","INSECTICIDE","OTHER")
 plot_ly(CALIFORNIA_19,x=~type,y = ~count,color = o_status,alpha = 0.5) %>%
@@ -167,14 +167,14 @@ plot_ly(CALIFORNIA_19,x=~type,y = ~count,color = o_status,alpha = 0.5) %>%
       borderwidth = 1,
       orientation = 'h'
     ),
-    xaxis = list(title = ""), #去掉X轴名称type 
+    xaxis = list(title = ""),
     margin = list(
       l = 70,
       r = 80
     )
   )
 
-#绘图 2019FLORIDA
+# 2019FLORIDA
 o_status = c("FUNGICIDE","HERBICIDE","INSECTICIDE","OTHER")
 plot_ly(FLORIDA_19,x =~type,y = ~count,color = o_status,alpha = 0.5) %>%
   #add_text(text = 'test') %>%
@@ -191,38 +191,10 @@ plot_ly(FLORIDA_19,x =~type,y = ~count,color = o_status,alpha = 0.5) %>%
       r = 80
     )
   )
-#绘图 2018CALIFORNIA
-o_status = c("FUNGICIDE","HERBICIDE","INSECTICIDE")
-plot_ly(CALIFORNIA_18,x =~type,y = ~count,color = o_status,alpha = 0.5) %>%
-  #add_text(text = 'test') %>%
-  #add_markers() %>%
-  add_bars() %>%
-  layout(
-    title = '2018CALIFORIA',
-    legend = list(
-      borderwidth = 1,
-      orientation = 'h'
-    ),
-    margin = list(
-      l = 70,
-      r = 80
-    )
-  )
-
-
 ```
 
-
-### At last, we explore the toxicities each state is possible to encounter in 2019 and 2016:
-
-```{r echo=FALSE}
-#李师傅的码
+```{r echo=FALSE, message=FALSE}
 source('test1025.R')
-
-if(!require(tidyverse)) install.packages("tidyverse")
-if(!require(ggplot2)) install.packages("ggplot2", repos = "http://cran.us.r-project.org")
-if(!require(ggpubr)) install.packages("ggpubr", repos = "http://cran.us.r-project.org")
-
 # load the data from test1025.R
 
 df1 <- combine()
@@ -275,20 +247,97 @@ plot_chem <- function(year, dname1, plot_type, state = "California"){
 }
 ```
 
-```{r}
-plot_chem(2019, 'CHEMICAL', "bar")
+The two images below indicate the count of Chemical (Grouped by chemical type) of each state in 2016 and 2019.
+
+Count of Chemical (Grouped by chemical type) of each state in 2016
+
+```{r echo=FALSE, message=FALSE}
 plot_chem(2016, 'CHEMICAL', "bar")
+```
+
+Count of Chemical (Grouped by chemical type) of each state in 2019
+
+```{r echo=FALSE, message=FALSE}
+plot_chem(2019, 'CHEMICAL', "bar")
+```
+
+
+We can take a quick look at the percentage of Chemical usage (Grouped by chemical type) in each state in 2019
+
+```{r echo=FALSE, message=FALSE}
 plot_chem(2019, 'CHEMICAL', "pie")
 plot_chem(2019, 'CHEMICAL', "pie", "FLORIDA")
 ```
 
+### At last, we explore the toxins each state is possible to encounter in 2019 and 2018:.
+```{r echo=FALSE, message=FALSE, results='hide', warning=FALSE}
+result<-combine()
+library(formattable)
+library(data.table)
+#count
+Carcinogen<-subset(result,Carcinogen!="NA")
+Carcinogen1<-summarise(group_by(Carcinogen,Carcinogen),count=n())
+Hormone.Disruptor<-subset(result,Hormone.Disruptor!="NA")
+Hormone.Disruptor1<-summarise(group_by(Hormone.Disruptor,Hormone.Disruptor),count=n())
+Neurotoxins<-subset(result,Neurotoxins!="NA")
+Neurotoxins1<-summarise(group_by(Neurotoxins,Neurotoxins),count=n())
+Developmental.or.Reproductive.Toxins<-subset(result,!`Developmental.or.Reproductive.Toxins` %>% is.na())
+Developmental.or.Reproductive.Toxins1<-summarise(group_by(Developmental.or.Reproductive.Toxins,Developmental.or.Reproductive.Toxins),count=n())
+Bee.Toxins<-subset(result,Bee.Toxins!="NA")
+Bee.Toxins1<-summarise(group_by(Bee.Toxins,Bee.Toxins),count=n())
+
+
+df<-cbind(Carcinogen1,Hormone.Disruptor1,Neurotoxins1,Developmental.or.Reproductive.Toxins1)
+colnames(Carcinogen1)=c('condition','Carcinogen')
+colnames(Hormone.Disruptor1)=c('condition','Hormone.Disruptor')
+colnames(Neurotoxins1)=c('condition','Neurotoxins')
+colnames(Developmental.or.Reproductive.Toxins1)=c('condition','Developmental.or.Reproductive.Toxins')
+human.toxins<-full_join(Carcinogen1,Hormone.Disruptor1,by='condition') %>% full_join(Neurotoxins1,by='condition') %>% 
+  full_join(Developmental.or.Reproductive.Toxins1,by='condition')
+human.toxins[human.toxins %>% is.na()]=0
+#human.toxins-------------------------------------
+#set color
+customGreen0="#DeF7E9"
+customGreen="#71CA97"
+customRed="#ff7f7f"
+#view data with the formattable package
+#formattable(human.toxins)
+#add color tile for columnns
+formattable(
+  human.toxins,align=c("l","c","l","c","l"),list(
+    'condition'=color_bar(customRed),
+    'Carcinogen'=color_tile(customGreen,customGreen0),
+    'Hormone.Disruptor'=color_tile(customGreen,customGreen0),
+    'Neurotoxins'=color_tile(customGreen,customGreen0),
+    'Developmental.or.Reproductive.Toxins'=color_tile(customGreen,customGreen0)
+  )
+)
+
+#Bee.Toxins----------------------------------------
+#set color
+customGreen0="#DeF7E9"
+customGreen="#71CA97"
+customRed="#ff7f7f"
+#view data with the formattable package
+#formattable(Bee.Toxins1)
+#add color tile for columnns
+formattable(
+  Bee.Toxins1,align=c("l","c"),list(
+    #'Bee.Toxins'=formatter("span",style=~style(color="grey",font.weight="bold"))
+    'Bee.Toxins'=color_tile(customGreen,customGreen0),
+    'count'=color_bar(customRed)
+  )
+)
+```
+
 
 ## Shiny:
-We build a simple shiny interface here:  https://yulijin.shinyapps.io/midterm/
+We build a simple shiny interface here: https://yulijin.shinyapps.io/midterm/
 
 ## Final Conclusion:
 1. Since the dataset in imbalanced, most observations are from California, thus it is almost meaningless to compare the sum of organic value. And since all observations from New York State, North Carolina, Oregon and Washington are organic in 2019, it is meaningless to compare the Organic proportions  in 2016 and 2019 as well.
 
-2. bla bla bla
 
-3. bla bla bla
+2. Chemical substances affect both humans and bees. Among the above-mentioned chemical substances, there are 53 species that have greater side effects on bees. Most of these chemicals contain Carcinogen and Hormone Disruptor, which can cause harm to humans. Therefore, we call for reducing the use of chemical.
+
+3.3. According to the bar plot, we can see most observations come from California and Florida and these 2 states frequently use chemicals for strawberries. Moreover, The domain chemicals are fungicides and insecticides in 2 states, and about 80% of chemicals they use are these two types.
