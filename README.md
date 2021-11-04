@@ -1,4 +1,4 @@
-# midterm
+# Midterm Project - Strawberry
 This is for the midterm project in MA615 about Strawberry
 
 
